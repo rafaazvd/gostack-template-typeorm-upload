@@ -49,7 +49,7 @@ class TransactionsRepository extends Repository<Transaction> {
     const transactions = await transactionsRepository.find();
     const categoryRepository = getRepository(Category);
     const transactionsTotal = transactions.map(async transaction => {
-      const categorys = await categoryRepository.findOne({
+      const categories = await categoryRepository.findOne({
         where: { category_id: transaction.category_id },
       });
       const transactions1 = {
@@ -57,7 +57,7 @@ class TransactionsRepository extends Repository<Transaction> {
         title: transaction.title,
         type: transaction.type,
         value: transaction.value,
-        category: categorys,
+        category: categories,
         created_at: transaction.created_at,
         updated_at: transaction.updated_at,
       };
